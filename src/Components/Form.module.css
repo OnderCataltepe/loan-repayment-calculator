@@ -1,0 +1,203 @@
+.formDiv {
+  width: 70%;
+  background-color: white;
+  margin: 2rem auto 0 auto;
+  padding: 2rem;
+}
+
+.formDiv form {
+  display: flex;
+  flex-direction: column;
+  height: 40rem;
+  width: 100%;
+  margin: 0rem auto;
+
+  margin-top: 2rem;
+}
+
+.valueContainer {
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+.animInputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  margin-right: 2rem;
+}
+
+.animInputs > input {
+  font-size: 1.6rem;
+  line-height: 2rem;
+  padding: 1rem 1rem;
+  border-radius: 1rem;
+  border: 0.15rem solid grey;
+  outline: none;
+  position: relative;
+  width: 15rem;
+  text-align: center;
+  z-index: 1;
+  background-color: transparent;
+}
+.animInputs > input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.animInputs > input[type="number"] {
+  -moz-appearance: textfield;
+}
+.animInputs > label {
+  position: absolute;
+  top: 1.25rem;
+  left: 2.5rem;
+  font-size: 1.6rem;
+  transition: 0.2s;
+  color: grey;
+}
+.animInputs > span {
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+  font-size: 1.6rem;
+  color: grey;
+}
+.animInputs > p {
+  font-size: 1.3rem;
+  margin-top: 0.3rem;
+  margin-left: 1rem;
+}
+.animInputs > input:focus + label,
+.animInputs > input:valid + label {
+  background-color: wihte;
+  top: -0.8rem;
+  left: 2rem;
+  background-color: white;
+  padding: 0rem 0.4rem;
+  z-index: 2;
+}
+/* RANGE INPUTS*/
+
+.secondContainer {
+  display: flex;
+  align-items: center;
+}
+.rangeInputs {
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rangeInputs h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1rem;
+  color: grey;
+}
+
+.rangeInputs label {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: grey;
+}
+
+.rangeInputs input {
+  width: 50rem;
+  margin-bottom: 3rem;
+}
+
+.secondContainer button {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #fc8d4d, #e62c03);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0.2rem 0.4rem;
+  color: #ffffff;
+  cursor: pointer;
+  outline: 0;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  pointer-events: auto;
+  font-size: 2rem;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  border: 0;
+  transition: box-shadow 0.2s;
+  margin-left: 1rem;
+}
+.secondContainer button:hover {
+  background-image: linear-gradient(-180deg, #ff8138, #e62c03);
+  box-shadow: rgba(253, 76, 0, 0.6) 0 0.3rem 0.8rem;
+}
+/*ERROR CLASS*/
+
+p.error {
+  color: red;
+}
+.error {
+  border-color: red !important;
+}
+/**/
+
+.selectInputs {
+  display: flex;
+}
+
+.dropdown {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border-radius: 1rem;
+  border: solid 0.1rem grey;
+  align-items: center;
+  width: 15rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+.dropdown input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+  background-color: aqua;
+}
+
+.dropdown label {
+  width: 90%;
+  color: grey;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.dropdown label:hover {
+  background-color: #dceef5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin: 0.25rem 0;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.4rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(105, 105, 105);
+}
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
