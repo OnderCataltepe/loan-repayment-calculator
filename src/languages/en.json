@@ -1,0 +1,22 @@
+{
+  "form": {
+    "title": "Kredi Hesaplama Aracı ",
+    "loanAmount": "Loan Amount",
+    "profitRate": "Profit Rate",
+    "payFreq": "Payment Frequency",
+    "payNum": "Number of Payments",
+    "calculate": "Calculate",
+    "taxRates": "Tax Rates:",
+    "bitt": "BITT",
+    "rusf": "RUSF",
+    "weekly": "Weekly",
+    "monhtly": "Monhtly",
+    "annual": "Annual",
+    "errors": {
+      "required": "This field is required.",
+      "loanMin": "Amount can not be less than 1000TL.",
+      "profitMin": "Minimum valid rate is 0.01%.",
+      "profitMax": "Rate can not greater than 99.99%."
+    }
+  }
+}

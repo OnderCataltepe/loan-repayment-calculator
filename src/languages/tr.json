@@ -1,0 +1,22 @@
+{
+  "form": {
+    "title": "Loan Repayment Calculator",
+    "loanAmount": "Kredi Tutarı",
+    "profitRate": "Kâr Oranı",
+    "payFreq": "Taksit Aralığı",
+    "payNum": "Taksit Sayısı",
+    "calculate": "Hesapla",
+    "taxRates": "Vergi Oranları:",
+    "bitt": "BSMV",
+    "kkdf": "KKDF",
+    "weekly": "Haftalık",
+    "monhtly": "Aylık",
+    "annual": "Yıllık",
+    "errors": {
+      "required": "Bir değer giriniz.",
+      "loanMin": "En az 1000TL girmelisiniz.",
+      "profitMin": "En az %0.01 girmelisiniz.",
+      "profitMax": "En fazla %99.99 girebilirsiniz."
+    }
+  }
+}
