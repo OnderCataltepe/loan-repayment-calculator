@@ -1,0 +1,130 @@
+.money {
+  position: absolute;
+  background-color: transparent;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-5px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+@keyframes floatTwo {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-7px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+.gold {
+  top: 12rem;
+  left: 2rem;
+  font-size: 3rem;
+  color: #e9f028;
+  animation: float 10s ease-in-out infinite;
+}
+
+.euro {
+  top: 35rem;
+  left: 3rem;
+  font-size: 2rem;
+  color: #f72c2c;
+  animation: floatTwo 10s ease-in-out infinite;
+}
+.sterling {
+  top: 8rem;
+  left: 10rem;
+  font-size: 2rem;
+  color: #032db4;
+}
+.dollar {
+  top: 20rem;
+  left: 6rem;
+  font-size: 2rem;
+  color: #06b406;
+  animation: floatTwo 10s ease-in-out infinite;
+}
+.lira {
+  top: 27rem;
+  left: 13rem;
+  font-size: 2rem;
+  color: rgb(155, 44, 44);
+  animation: float 10s ease-in-out infinite;
+}
+
+.curvyChild {
+  position: absolute;
+  top: 10rem;
+  right: -20rem;
+  width: 30rem;
+  height: 50rem;
+  border-radius: 70% 65% 100% 25% / 90% 89% 51% 18%;
+  background-image: linear-gradient(
+    to right,
+    #f6e7d9,
+    #f9e6d1,
+    #fbe6c9,
+    #fbe6c0,
+    #fae7b8,
+    #efe7b2,
+    #e3e6ae,
+    #d5e6ac,
+    #bce3b0,
+    #a3dfb6,
+    #8cdabf,
+    #77d4c9
+  );
+}
+.curvyChildTwo {
+  position: absolute;
+  bottom: 6rem;
+  right: -5rem;
+  width: 20rem;
+  height: 35rem;
+
+  border-radius: 70% 30% 0% 100% / 76% 36% 64% 24%;
+  background-image: linear-gradient(
+    to right,
+    #fffbe0,
+    #fdf8c0,
+    #f7f6a0,
+    #eff47f,
+    #e5f25b
+  );
+}
+.curvyChildThree {
+  position: absolute;
+  top: 20rem;
+  right: -15rem;
+  width: 20rem;
+  height: 35rem;
+
+  border-radius: 66% 34% 56% 44% / 36% 100% 0% 64%;
+  background-image: linear-gradient(
+    to left,
+    #f8ec74,
+    #b3f49f,
+    #83f2d0,
+    #84e8f0,
+    #a9daf4
+  );
+}
+
+.plus {
+  position: absolute;
+  bottom: -48rem;
+}
+
+.plus img {
+  height: 100vh;
+}
