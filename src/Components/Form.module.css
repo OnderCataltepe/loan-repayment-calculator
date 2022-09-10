@@ -4,22 +4,13 @@
 /*FORM*/
 .formContainer {
   width: 90rem;
-  background-image: linear-gradient(
-    to bottom,
-    #f9f9f9,
-    #fafafa,
-    #fbfcfc,
-    #fcfdfd,
-    #fdfefd,
-    #fdfefd,
-    #fdfefd,
-    #fdfefd,
-    #fcfdfd,
-    #fbfcfc,
-    #fafafa,
-    #f9f9f9
-  );
-  margin: 2rem auto;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.5px);
+  -webkit-backdrop-filter: blur(9.5px);
+  margin: 0rem auto;
   border-radius: 2rem;
   padding: 3rem 2rem;
   position: relative;
@@ -29,7 +20,7 @@
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 .formContainer h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   color: #1a1b1e;
   margin: 0 auto;
   font-family: "Libre Baskerville", serif;
@@ -50,7 +41,6 @@
   width: 100%;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: white;
   min-height: 9rem;
   border-radius: 2rem;
   font-family: "GFS Didot", serif;
@@ -60,13 +50,14 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  width: 20rem;
+  width: 16rem;
 }
 .animInputs > input {
   font-size: 1.6rem;
   line-height: 2rem;
   padding: 1rem 1rem;
   border-radius: 1rem;
+  border: none;
   border: 0.15rem solid rgb(223, 220, 220);
   outline: none;
   position: relative;
@@ -76,6 +67,9 @@
   background-color: transparent;
   box-shadow: rgba(50, 50, 93, 0.1) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.15) 0px 3px 7px -3px;
+}
+.animInputs > input:focus {
+  border: 0.3rem solid rgb(177, 172, 243);
 }
 .animInputs > input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -89,7 +83,7 @@ input::-webkit-inner-spin-button {
   position: absolute;
   top: 1.25rem;
   left: 2.5rem;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   transition: 0.2s;
   color: grey;
 }
@@ -101,9 +95,6 @@ input::-webkit-inner-spin-button {
   color: grey;
 }
 .animInputs > p {
-  font-size: 1.3rem;
-  margin-top: 0.3rem;
-  margin-left: 1rem;
 }
 .animInputs > input:focus + label,
 .animInputs > input:valid + label {
@@ -112,7 +103,6 @@ input::-webkit-inner-spin-button {
   left: 2rem;
   background-color: white;
   border-radius: 0.4rem;
-
   padding: 0rem 0.5rem;
   z-index: 2;
 }
@@ -129,7 +119,7 @@ input::-webkit-inner-spin-button {
   background-color: #ffffff;
   max-height: 20rem;
   overflow-y: auto;
-  top: 4.2rem;
+  top: 4.6rem;
   z-index: 5;
 }
 .dropdown input[type="radio"] {
@@ -244,6 +234,9 @@ input::-webkit-inner-spin-button {
 /*ERROR CLASS*/
 
 p.error {
+  font-size: 1.2rem;
+  margin-top: 0.3rem;
+  margin-left: 1rem;
   color: red;
 }
 .error {
@@ -411,12 +404,12 @@ p.error {
 }
 
 /*RESPONSIVE*/
-@media only screen and (max-width: 900px) {
-  .formDiv {
+@media screen and (max-width: 600px) {
+  .formContainer {
     width: 50rem;
   }
-  .formDiv h1 {
-    font-size: 3rem;
+  .formContainer h1 {
+    font-size: 2.5rem;
   }
   .rangeInputs {
     width: 45rem;
@@ -424,8 +417,41 @@ p.error {
   .secondContainer {
     justify-content: center;
   }
+  .animInputs > label {
+    color: #1f1f1f;
+  }
   .animInputs {
-    width: 22rem;
+    width: 100%;
+    min-height: 8rem;
+  }
+  .buttonDiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .logoHolder {
+    display: none;
+  }
+}
+@media screen and (max-width: 900px) and (min-width: 601px) {
+  .formContainer {
+    width: 50rem;
+  }
+  .formContainer h1 {
+    font-size: 2.5rem;
+  }
+  .rangeInputs {
+    width: 45rem;
+  }
+  .secondContainer {
+    justify-content: center;
+  }
+  .animInputs:nth-child(1) {
+    width: 100%;
+  }
+  .animInputs {
+    width: 48%;
     min-height: 8rem;
   }
   .buttonDiv {

@@ -1,6 +1,8 @@
 import styles from "./Form.module.css";
 //Hooks
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import LangContext from "../contexts/LangContext";
+
 //Fontawesome and Lottie
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,19 +15,6 @@ import illust from "../assets/illust1.json";
 //Yup and Formik
 import { useFormik } from "formik";
 import * as yup from "yup";
-const schema = yup.object().shape({
-  loanAmount: yup
-    .number()
-    .required("Kredi tutarı giriniz.")
-    .min(1000, "En az 1000TL girmelisiniz."),
-  pRate: yup
-    .number()
-    .required("Kâr oranı giriniz")
-    .min(0.01, "En az 0.01 giriniz.")
-    .max(99.99, "En fazla %99.99 girebilirsiniz."),
-  selectorOne: yup.string().required("Bu alan zorunlu."),
-  selectorTwo: yup.number().required("Bu alan zorunlu."),
-});
 
 const weeks = Array(520)
   .fill(1)
@@ -38,38 +27,55 @@ const years = Array(12)
   .map((n, i) => n + i);
 
 const Form = () => {
-  //Formik
+  const { text, userLanguage } = useContext(LangContext);
+
+  const schema = yup.object().shape({
+    loanAmount: yup
+      .number()
+      .required(text.form.errors.required)
+      .min(1000, text.form.errors.loanMin),
+    pRate: yup
+      .number()
+      .required(text.form.errors.required)
+      .min(0.01, text.form.errors.profitMin)
+      .max(99.99, text.form.errors.profitMax),
+  });
   const formik = useFormik({
     initialValues: {
       loanAmount: "",
+      compounding: "",
+      comValue: text.form.monthly,
       pRate: "",
       bsmv: 15,
       kkdf: 10,
       per: "",
-      selectorOne: "Aylık",
+      perValue: text.form.monthly,
       term: "",
-      selectorTwo: 12,
+      termValue: 12,
     },
 
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      const val = {
+        amount: values.loanAmount,
+        compound: values.comValue,
+        rate: values.pRate,
+        period: values.perValue,
+        payNumber: values.termValue,
+      };
+      console.log(val);
+    },
     validationSchema: schema,
   });
   //States
-  const [isSubmit, setIsSubmit] = useState(false);
   const [isPerDrop, setIsPerDrop] = useState(false);
   const [isTermDrop, setIsTermDrop] = useState(false);
+  const [isComDrop, setIsComDrop] = useState(false);
   const [terms, setTerms] = useState(months);
   //Errors
   const loanError =
     formik.errors.loanAmount && formik.touched.loanAmount ? "error" : null;
   const pRateError =
     formik.errors.pRate && formik.touched.pRate ? "error" : null;
-  const selectorOneError =
-    formik.errors.selectorOne && formik.errors.per && formik.touched.per
-      ? "error"
-      : null;
-  const selectorTwoError =
-    formik.errors.selectorTwo && formik.touched.term ? "error" : null;
 
   //Dropdown functions
   const firstdropDownToggle = () => {
@@ -77,6 +83,9 @@ const Form = () => {
   };
   const secondDropDownToggle = () => {
     setIsTermDrop((prev) => !prev);
+  };
+  const thirdDropDownToggle = () => {
+    setIsComDrop((prev) => !prev);
   };
   const closeDrop = () => {
     if (isPerDrop) {
@@ -89,11 +98,15 @@ const Form = () => {
         setIsTermDrop(false);
       }, 100);
     }
+    if (isComDrop) {
+      setTimeout(() => {
+        setIsComDrop(false);
+      }, 100);
+    }
   };
   //Validation for length and valid chars
   const amountValidation = (e) => {
     let key = e.which || e.KeyCode;
-
     if (
       e.target.value.length > 6 ||
       parseInt(e.target.value) < 1 ||
@@ -113,21 +126,26 @@ const Form = () => {
   };
 
   useEffect(() => {
-    if (formik.values.selectorOne === "Aylık") {
+    if (formik.values.perValue === text.form.monthly) {
       setTerms(months);
     }
-    if (formik.values.selectorOne === "Haftalık") {
+    if (formik.values.perValue === text.form.weekly) {
       setTerms(weeks);
     }
-    if (formik.values.selectorOne === "Yıllık") {
+    if (formik.values.perValue === text.form.annual) {
       setTerms(years);
     }
-    formik.setFieldValue("selectorTwo", 12);
-  }, [formik.values.selectorOne]);
+    formik.setFieldValue("termValue", 12);
+  }, [formik.values.perValue]);
+
+  useEffect(() => {
+    formik.setFieldValue("comValue", text.form.monthly);
+    formik.setFieldValue("perValue", text.form.monthly);
+  }, [userLanguage]);
 
   return (
     <div className={styles.formContainer} onClick={closeDrop}>
-      <h1>KREDİ HESAPLA</h1>
+      <h1>{text.form.title}</h1>
       <form onSubmit={formik.handleSubmit}>
         <div className={styles.firstContainer}>
           <div className={styles.animInputs}>
@@ -141,13 +159,63 @@ const Form = () => {
               className={styles[loanError]}
               required
             />
-            <label htmlFor="loanAmount">Kredi Tutarı</label>
+            <label htmlFor="loanAmount">{text.form.loanAmount}</label>
             <span>
               <FontAwesomeIcon icon={faTurkishLiraSign} />
             </span>
             {formik.errors.loanAmount && formik.touched.loanAmount && (
               <p className={styles[loanError]}>{formik.errors.loanAmount}</p>
             )}{" "}
+          </div>
+          <div className={styles.animInputs}>
+            <input
+              id="compounding"
+              name="compounding"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.comValue}
+              onClick={thirdDropDownToggle}
+              autoComplete="off"
+              required
+            />
+            <label htmlFor="compounding">{text.form.profitFreq}</label>
+            <span>
+              <FontAwesomeIcon icon={isComDrop ? faCaretUp : faCaretDown} />{" "}
+            </span>
+
+            {isComDrop && (
+              <div className={styles.dropdown}>
+                <input
+                  type="radio"
+                  id="com-one"
+                  name="comValue"
+                  value={text.form.weekly}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  onClick={() => setIsComDrop()}
+                />
+                <label htmlFor="com-one">{text.form.weekly}</label>
+                <input
+                  type="radio"
+                  id="com-two"
+                  name="comValue"
+                  value={text.form.monthly}
+                  onChange={formik.handleChange}
+                  onClick={() => setIsComDrop()}
+                />
+                <label htmlFor="com-two">{text.form.monthly}</label>
+                <input
+                  type="radio"
+                  id="com-three"
+                  name="comValue"
+                  value={text.form.annual}
+                  onChange={formik.handleChange}
+                  onClick={() => setIsComDrop()}
+                />
+                <label htmlFor="com-three">{text.form.annual}</label>
+              </div>
+            )}
           </div>
           <div className={styles.animInputs}>
             <input
@@ -161,7 +229,7 @@ const Form = () => {
               className={styles[pRateError]}
               required
             />
-            <label htmlFor="pRate">Kâr Oranı</label>
+            <label htmlFor="pRate">{text.form.profitRate}</label>
             <span>%</span>
             {formik.errors.pRate && formik.touched.pRate && (
               <p className={styles[pRateError]}>{formik.errors.pRate}</p>
@@ -174,53 +242,46 @@ const Form = () => {
               type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.selectorOne}
+              value={formik.values.perValue}
               onClick={firstdropDownToggle}
-              className={styles[selectorOneError]}
               autoComplete="off"
               required
             />
-            <label htmlFor="per">Taksit Aralığı</label>
+            <label htmlFor="per">{text.form.payFreq}</label>
             <span>
               <FontAwesomeIcon icon={isPerDrop ? faCaretUp : faCaretDown} />{" "}
             </span>
-            {formik.errors.per &&
-              formik.errors.selectorOne &&
-              formik.touched.per && (
-                <p className={styles[selectorOneError]}>
-                  {formik.errors.selectorOne}
-                </p>
-              )}{" "}
+
             {isPerDrop && (
               <div className={styles.dropdown}>
                 <input
                   type="radio"
                   id="option-one"
-                  name="selectorOne"
-                  value="Haftalık"
+                  name="perValue"
+                  value={text.form.weekly}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   onClick={() => setIsPerDrop()}
                 />
-                <label htmlFor="option-one">Haftalık</label>
+                <label htmlFor="option-one">{text.form.weekly}</label>
                 <input
                   type="radio"
                   id="option-two"
-                  name="selectorOne"
-                  value="Aylık"
+                  name="perValue"
+                  value={text.form.monthly}
                   onChange={formik.handleChange}
                   onClick={() => setIsPerDrop()}
                 />
-                <label htmlFor="option-two">Aylık</label>
+                <label htmlFor="option-two">{text.form.monthly}</label>
                 <input
                   type="radio"
                   id="option-three"
-                  name="selectorOne"
-                  value="Yıllık"
+                  name="perValue"
+                  value={text.form.annual}
                   onChange={formik.handleChange}
                   onClick={() => setIsPerDrop()}
                 />
-                <label htmlFor="option-three">Yıllık</label>
+                <label htmlFor="option-three">{text.form.annual}</label>
               </div>
             )}
           </div>
@@ -230,22 +291,17 @@ const Form = () => {
               name="term"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.selectorTwo}
+              value={formik.values.termValue}
               onClick={secondDropDownToggle}
-              className={styles[selectorTwoError]}
               autoComplete="off"
               required
             />
-            <label htmlFor="term">Taksit Sayısı</label>
+            <label htmlFor="term">{text.form.payNum}</label>
             <span>
               <FontAwesomeIcon icon={isTermDrop ? faCaretUp : faCaretDown} />{" "}
             </span>
-            {formik.errors.selectorTwo && formik.touched.term && (
-              <p className={styles[selectorTwoError]}>
-                {formik.errors.selectorTwo}
-              </p>
-            )}{" "}
-            {isTermDrop && formik.values.selectorOne && (
+
+            {isTermDrop && formik.values.termValue && (
               <div className={styles.dropdown}>
                 {terms.map((item, index) => {
                   return (
@@ -253,7 +309,7 @@ const Form = () => {
                       <input
                         type="radio"
                         id={`${item}-option`}
-                        name="selectorTwo"
+                        name="termValue"
                         value={item}
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
@@ -269,8 +325,10 @@ const Form = () => {
         </div>
         <div className={styles.secondContainer}>
           <div className={styles.rangeInputs}>
-            <h2>Vergi Oranları:</h2>
-            <label htmlFor="lastName">BSMV ( {formik.values.bsmv}% )</label>
+            <h2>{text.form.taxRates}</h2>
+            <label htmlFor="lastName">
+              {text.form.bitt} ( {formik.values.bsmv}% )
+            </label>
             <input
               name="bsmv"
               type="range"
@@ -282,7 +340,9 @@ const Form = () => {
               value={formik.values.bsmv}
             />
 
-            <label htmlFor="kkdf">KKDF ( {formik.values.kkdf}% )</label>
+            <label htmlFor="kkdf">
+              {text.form.rusf} ( {formik.values.kkdf}% )
+            </label>
             <input
               name="kkdf"
               type="range"
@@ -300,7 +360,7 @@ const Form = () => {
               loop={true}
               style={{ width: "20rem" }}
             />
-            <button type="submit">Hesapla</button>
+            <button type="submit">{text.form.calculate}</button>
           </div>
         </div>
         <div className={styles.logoHolder}>

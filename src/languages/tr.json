@@ -1,16 +1,17 @@
 {
   "form": {
-    "title": "Loan Repayment Calculator",
+    "title": "Kredi Hesaplama Aracı",
     "loanAmount": "Kredi Tutarı",
     "profitRate": "Kâr Oranı",
+    "profitFreq": "Kâr Sıklığı",
     "payFreq": "Taksit Aralığı",
     "payNum": "Taksit Sayısı",
     "calculate": "Hesapla",
     "taxRates": "Vergi Oranları:",
     "bitt": "BSMV",
-    "kkdf": "KKDF",
+    "rusf": "KKDF",
     "weekly": "Haftalık",
-    "monhtly": "Aylık",
+    "monthly": "Aylık",
     "annual": "Yıllık",
     "errors": {
       "required": "Bir değer giriniz.",

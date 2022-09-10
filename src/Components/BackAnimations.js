@@ -1,5 +1,6 @@
 import styles from "./BackAnimations.module.css";
 import wave from "../assets/waveGrey.png";
+import bull from "../assets/bull.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -28,11 +29,8 @@ const BackAnimations = () => {
         <FontAwesomeIcon icon={faEuroSign} />
       </div>
 
-      <div className={styles.curvyChild}></div>
-      <div className={styles.curvyChildTwo}></div>
-      <div className={styles.curvyChildThree}></div>
-      <div className={styles.plus}>
-        <img alt="wave" src={wave} />
+      <div className={styles.bull}>
+        <img alt="bull" src={bull} />
       </div>
     </>
   );

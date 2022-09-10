@@ -1,13 +1,18 @@
 import "./App.css";
 import BackAnimations from "./Components/BackAnimations";
 import Form from "./Components/Form";
+import Navbar from "./Components/Navbar";
+import { LangProvider } from "./contexts/LangContext";
+
 function App() {
   return (
-    <div className="App">
-      <BackAnimations />
-      <h1>Hele hele</h1>
-      <Form />
-    </div>
+    <LangProvider>
+      <div className="App">
+        <Navbar />
+        <BackAnimations />
+        <Form />
+      </div>
+    </LangProvider>
   );
 }
 
