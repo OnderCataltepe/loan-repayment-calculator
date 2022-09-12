@@ -19,5 +19,20 @@
       "profitMin": "En az %0.01 girmelisiniz.",
       "profitMax": "En fazla %99.99 girebilirsiniz."
     }
+  },
+  "result": {
+    "totalRefund": "Toplam Ödenen Tutar",
+    "installment": "Taksit Tutarı",
+    "totalFees": "Toplam Vergi Tutarı",
+    "paymentSchedule": "Ödeme Planı"
+  },
+  "table": {
+    "paymentNumber": "Taksit No",
+    "installment": "Taksit Tutarı",
+    "principle": "Anapara",
+    "bitt": "BSMV",
+    "rusf": "KKDF",
+    "remainingPrinciple": "Kalan Ana Para",
+    "profitAmount": "Kâr Tutarı"
   }
 }

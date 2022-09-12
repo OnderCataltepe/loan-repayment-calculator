@@ -19,5 +19,20 @@
       "profitMin": "Minimum valid rate is 0.01%.",
       "profitMax": "Rate can not greater than 99.99%."
     }
+  },
+  "result": {
+    "totalRefund": "Total Refund",
+    "installment": "Installment",
+    "totalFees": "Total Fees",
+    "paymentSchedule": "Payment Schedule"
+  },
+  "table": {
+    "paymentNumber": "Payment Number",
+    "installment": "Installment",
+    "principle": "Principle",
+    "bitt": "BITT",
+    "rusf": "RUSF",
+    "remainingPrinciple": "Remaining Principle",
+    "profitAmount": "Profit Amount"
   }
 }
