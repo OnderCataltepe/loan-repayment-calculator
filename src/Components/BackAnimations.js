@@ -1,5 +1,5 @@
 import styles from "./BackAnimations.module.css";
-import wave from "../assets/waveGrey.png";
+
 import bull from "../assets/bull.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 const CalculatorContext = createContext();
 
@@ -10,16 +10,6 @@ export const CalculatorProvider = ({ children }) => {
     installment: 0,
     totalTax: 0,
   });
-
-  const vale = {
-    amount: 100000,
-    compound: "Aylık",
-    bitt: 10,
-    rusf: 15,
-    rate: 1.1,
-    period: "Yıllık",
-    payNumber: 2,
-  };
 
   const convertTimes = (val) => {
     let type =
@@ -73,7 +63,7 @@ export const CalculatorProvider = ({ children }) => {
         (data.amount * (p + b + k) * Math.pow(1 + (p + b + k), n)) /
         (Math.pow(1 + (p + b + k), n) - 1);
     } else {
-      p = Math.pow(data.rate, t) / 100;
+      p = Math.pow(1 + data.rate / 100, t) - 1;
       b = p * (data.bitt / 100);
       k = p * (data.rusf / 100);
       installment =
@@ -83,21 +73,52 @@ export const CalculatorProvider = ({ children }) => {
 
     for (let i = 0; i < n; i++) {
       let principal = installment - a * p - a * b - a * k;
-      a -= principal;
 
       let row = {
         number: i + 1,
-        installment: installment,
-        principal: principal,
-        profit: a * p,
-        bitt: a * b,
-        rusf: a * k,
-        remainingPrinciple: a,
+        installment: installment.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }),
+        principal: principal.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }),
+        profit: (a * p).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }),
+        bitt: (a * b).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }),
+        rusf: (a * k).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }),
+        remainingPrinciple: (a - principal).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }),
       };
       tableArr.push(row);
       totalTax += a * b + a * k;
+      a -= principal;
     }
-    setResult({ totalRefund: installment * n, installment, totalTax });
+    setResult({
+      totalRefund: (installment * n).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+      installment: installment.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+      totalTax: totalTax.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+    });
     setPayPlan(tableArr);
   };
 

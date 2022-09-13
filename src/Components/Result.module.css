@@ -8,7 +8,7 @@
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.09);
   border-radius: 1.6rem;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.5px);
   -webkit-backdrop-filter: blur(9.5px);
   margin: 1rem auto;
@@ -52,7 +52,6 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0 0.2rem 0.4rem;
   color: #ffffff;
   cursor: pointer;
-  outline: 0;
   transition: 0.5s;
   background-size: 200% auto;
   overflow: hidden;
@@ -67,20 +66,23 @@
 }
 .resultContainer > div > button:hover {
   background-position: right center;
-
   color: #fff;
-  text-decoration: none;
   box-shadow: rgba(253, 8, 0, 0.6) 0 0.3rem 0.8rem;
 }
 .resultContainer > div > button:active {
   transform: scale(0.95);
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 601px) {
   .resultContainer {
     width: 50rem;
   }
   .resultContainer > div {
     width: 45%;
     margin-bottom: 2rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .resultContainer {
+    width: 100%;
   }
 }

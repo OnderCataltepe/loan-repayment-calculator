@@ -16,8 +16,8 @@
     "errors": {
       "required": "Bir değer giriniz.",
       "loanMin": "En az 1000TL girmelisiniz.",
-      "profitMin": "En az %0.01 girmelisiniz.",
-      "profitMax": "En fazla %99.99 girebilirsiniz."
+      "profitMin": "En az %0,01 girmelisiniz.",
+      "profitMax": "En fazla %99,99 girebilirsiniz."
     }
   },
   "result": {

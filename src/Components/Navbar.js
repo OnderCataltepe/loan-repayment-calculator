@@ -1,15 +1,13 @@
 import styles from "./Navbar.module.css";
-
-import trFlag from "../assets/TR.png";
-import enFlag from "../assets/EN.png";
-import { useContext, useEffect } from "react";
+import trFlag from "../assets/turkey.png";
+import enFlag from "../assets/britain.png";
+import { useContext } from "react";
 import LangContext from "../contexts/LangContext";
 const Navbar = () => {
   const { userLanguage, changeLanguage } = useContext(LangContext);
 
   return (
     <nav className={styles.navbar}>
-      <div></div>
       <div className={styles.languages}>
         <button
           onClick={() => changeLanguage(userLanguage === "tr" ? "eng" : "tr")}

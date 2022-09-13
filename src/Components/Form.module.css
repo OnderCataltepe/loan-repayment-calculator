@@ -4,11 +4,10 @@
 /*FORM*/
 .formContainer {
   width: 90rem;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.09);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.5px);
+  backdrop-filter: blur(15.5px);
   -webkit-backdrop-filter: blur(9.5px);
   margin: 0rem auto;
   border-radius: 2rem;
@@ -93,8 +92,6 @@ input::-webkit-inner-spin-button {
   right: 1rem;
   font-size: 1.6rem;
   color: grey;
-}
-.animInputs > p {
 }
 .animInputs > input:focus + label,
 .animInputs > input:valid + label {
@@ -207,7 +204,6 @@ input::-webkit-inner-spin-button {
   box-shadow: rgba(0, 0, 0, 0.1) 0 0.2rem 0.4rem;
   color: #ffffff;
   cursor: pointer;
-  outline: 0;
   transition: 0.5s;
   background-size: 200% auto;
   overflow: hidden;
@@ -406,13 +402,13 @@ p.error {
 /*RESPONSIVE*/
 @media screen and (max-width: 600px) {
   .formContainer {
-    width: 50rem;
+    width: 100%;
   }
   .formContainer h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .rangeInputs {
-    width: 45rem;
+    width: 90%;
   }
   .secondContainer {
     justify-content: center;
@@ -442,7 +438,7 @@ p.error {
     font-size: 2.5rem;
   }
   .rangeInputs {
-    width: 45rem;
+    width: 90%;
   }
   .secondContainer {
     justify-content: center;

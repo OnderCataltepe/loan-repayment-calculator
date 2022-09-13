@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville&display=swap");
+
+.bgContainer {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+}
+
+.cardContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4.5rem 3rem;
+  box-shadow: 0rem 0rem 1rem 0rem black;
+  background: rgba(255, 255, 255, 0.64);
+  border-radius: 16px;
+  backdrop-filter: blur(11.7px);
+  -webkit-backdrop-filter: blur(11.7px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.buttonContainer {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 100;
+}
+.buttonContainer button {
+  background-color: transparent;
+  font-size: 3rem;
+  cursor: pointer;
+  border: none;
+  color: #636363;
+  padding: 0.1rem;
+}
+.buttonContainer button:hover {
+  color: #000000;
+  transition: 0.1s;
+}
+.tableContainer {
+  overflow: auto;
+  max-height: 50rem;
+}
+.tableContainer table {
+  font-size: 1.5rem;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  font-family: "GFS Didot", serif;
+}
+.tableContainer table thead {
+}
+.tableContainer table td,
+table th {
+  text-align: center;
+  padding: 8px;
+}
+.tableContainer table thead {
+  background-image: linear-gradient(
+    45deg,
+    #ff512f 0%,
+    #f09819 51%,
+    #ff512f 100%
+  );
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.tableContainer table thead th {
+  color: #ffffff;
+  height: 5rem;
+  font-size: 2rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.tableContainer table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.63);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.tableContainer::-webkit-scrollbar {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.tableContainer::-webkit-scrollbar-track {
+  background: linear-gradient(
+    to left,
+    #cfcfcf,
+    #e6e6e6,
+    #d8d8d8,
+    #cccccc,
+    #c7c7c7
+  );
+  margin-top: 5rem;
+  border-radius: 0.4rem;
+}
+.tableContainer::-webkit-scrollbar-track:horizontal {
+  background: linear-gradient(
+    to top,
+    #cfcfcf,
+    #e6e6e6,
+    #d8d8d8,
+    #cccccc,
+    #c7c7c7
+  );
+  margin-top: 5rem;
+  border-radius: 0.4rem;
+}
+.tableContainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to left,
+    #acacac,
+    #b3b3b3,
+    #b9b9b9,
+    #c4c4c4,
+    #c9c9c9
+  );
+  border-radius: 0.4rem;
+}
+.tableContainer::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(
+    to top,
+    #acacac,
+    #b3b3b3,
+    #b9b9b9,
+    #c4c4c4,
+    #c9c9c9
+  );
+  border-radius: 0.4rem;
+}
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to left,
+    #6a6a6b,
+    #7a7a7b,
+    #8a8a8b,
+    #9b9b9b,
+    #acacac
+  );
+}
+.tableContainer::-webkit-scrollbar-thumb:horizontal:hover {
+  background: linear-gradient(
+    to top,
+    #6a6a6b,
+    #7a7a7b,
+    #8a8a8b,
+    #9b9b9b,
+    #acacac
+  );
+}
+.tableContainer::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+
+@media screen and (max-width: 1000px) {
+  .bgContainer {
+    width: 100%;
+  }
+  .cardContainer {
+    width: 98%;
+  }
+}

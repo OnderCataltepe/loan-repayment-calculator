@@ -3,13 +3,11 @@
   width: 100vw;
   padding: 1rem 5rem;
   display: flex;
-
-  justify-content: space-between;
+  justify-content: end;
   align-items: flex-start;
 }
-
 .languages img {
-  width: 4rem;
+  width: 3rem;
   height: auto;
 }
 .languages button {
@@ -20,11 +18,12 @@
   cursor: pointer;
 }
 .languages button p {
-  font-size: 2rem;
+  margin-left: 0.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #1f1f1f;
 }
-
 .languages button:hover p {
   text-decoration: underline;
 }

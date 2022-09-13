@@ -4,7 +4,7 @@
     "loanAmount": "Loan Amount",
     "profitRate": "Profit Rate",
     "profitFreq": "Compounding",
-    "payFreq": "Payment Freq.",
+    "payFreq": "Pay Frequency",
     "payNum": "Payment numbers",
     "calculate": "Calculate",
     "taxRates": "Tax Rates:",
@@ -16,14 +16,14 @@
     "errors": {
       "required": "This field is required.",
       "loanMin": "Amount can not be less than 1000TL.",
-      "profitMin": "Minimum valid rate is 0.01%.",
-      "profitMax": "Rate can not greater than 99.99%."
+      "profitMin": "Minimum valid rate is 0,01%.",
+      "profitMax": "Rate can not greater than 99,99%."
     }
   },
   "result": {
     "totalRefund": "Total Refund",
     "installment": "Installment",
-    "totalFees": "Total Fees",
+    "totalFees": "Total Tax",
     "paymentSchedule": "Payment Schedule"
   },
   "table": {

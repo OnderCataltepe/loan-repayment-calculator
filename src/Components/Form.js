@@ -2,6 +2,7 @@ import styles from "./Form.module.css";
 //Hooks
 import { useEffect, useState, useContext } from "react";
 import LangContext from "../contexts/LangContext";
+import CalculatorContext from "../contexts/CalculatorContext";
 
 //Fontawesome and Lottie
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,12 +29,20 @@ const years = Array(12)
 
 const Form = () => {
   const { text, userLanguage } = useContext(LangContext);
+  const { calculator, setIsResult } = useContext(CalculatorContext);
+  //States
+  const [isPerDrop, setIsPerDrop] = useState(false);
+  const [isTermDrop, setIsTermDrop] = useState(false);
+  const [isComDrop, setIsComDrop] = useState(false);
+  const [terms, setTerms] = useState(months);
 
+  //Formik, Yup and Error States
   const schema = yup.object().shape({
     loanAmount: yup
       .number()
       .required(text.form.errors.required)
       .min(1000, text.form.errors.loanMin),
+
     pRate: yup
       .number()
       .required(text.form.errors.required)
@@ -43,14 +52,11 @@ const Form = () => {
   const formik = useFormik({
     initialValues: {
       loanAmount: "",
-      compounding: "",
       comValue: text.form.monthly,
       pRate: "",
       bsmv: 15,
       kkdf: 10,
-      per: "",
       perValue: text.form.monthly,
-      term: "",
       termValue: 12,
     },
 
@@ -58,24 +64,35 @@ const Form = () => {
       const val = {
         amount: values.loanAmount,
         compound: values.comValue,
+        bitt: values.bsmv,
+        rusf: values.kkdf,
         rate: values.pRate,
         period: values.perValue,
         payNumber: values.termValue,
       };
-      console.log(val);
+      calculator(val);
+      setIsResult(true);
     },
     validationSchema: schema,
   });
-  //States
-  const [isPerDrop, setIsPerDrop] = useState(false);
-  const [isTermDrop, setIsTermDrop] = useState(false);
-  const [isComDrop, setIsComDrop] = useState(false);
-  const [terms, setTerms] = useState(months);
-  //Errors
   const loanError =
     formik.errors.loanAmount && formik.touched.loanAmount ? "error" : null;
   const pRateError =
     formik.errors.pRate && formik.touched.pRate ? "error" : null;
+
+  //Validations when user typing
+  const amountValidation = (e) => {
+    const re = /^[0-9]*$/;
+    if (!re.test(e.key) || e.target.value.length > 8) {
+      e.preventDefault();
+    }
+  };
+  const pRateValidation = (e) => {
+    const re = /^[0-9,]+$/;
+    if (!re.test(e.key) || e.target.value.length > 4) {
+      e.preventDefault();
+    }
+  };
 
   //Dropdown functions
   const firstdropDownToggle = () => {
@@ -102,26 +119,6 @@ const Form = () => {
       setTimeout(() => {
         setIsComDrop(false);
       }, 100);
-    }
-  };
-  //Validation for length and valid chars
-  const amountValidation = (e) => {
-    let key = e.which || e.KeyCode;
-    if (
-      e.target.value.length > 6 ||
-      parseInt(e.target.value) < 1 ||
-      !(key >= 48 && key <= 57)
-    ) {
-      e.preventDefault();
-    }
-  };
-  const pRateValidation = (e) => {
-    let key = e.which || e.KeyCode;
-    if (
-      e.target.value.length > 5 ||
-      (key > 31 && (key < 48 || key > 57) && key !== 46)
-    ) {
-      e.preventDefault();
     }
   };
 
@@ -177,7 +174,6 @@ const Form = () => {
               value={formik.values.comValue}
               onClick={thirdDropDownToggle}
               autoComplete="off"
-              required
             />
             <label htmlFor="compounding">{text.form.profitFreq}</label>
             <span>
@@ -193,7 +189,6 @@ const Form = () => {
                   value={text.form.weekly}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  onClick={() => setIsComDrop()}
                 />
                 <label htmlFor="com-one">{text.form.weekly}</label>
                 <input
@@ -202,7 +197,6 @@ const Form = () => {
                   name="comValue"
                   value={text.form.monthly}
                   onChange={formik.handleChange}
-                  onClick={() => setIsComDrop()}
                 />
                 <label htmlFor="com-two">{text.form.monthly}</label>
                 <input
@@ -211,7 +205,6 @@ const Form = () => {
                   name="comValue"
                   value={text.form.annual}
                   onChange={formik.handleChange}
-                  onClick={() => setIsComDrop()}
                 />
                 <label htmlFor="com-three">{text.form.annual}</label>
               </div>
@@ -245,7 +238,6 @@ const Form = () => {
               value={formik.values.perValue}
               onClick={firstdropDownToggle}
               autoComplete="off"
-              required
             />
             <label htmlFor="per">{text.form.payFreq}</label>
             <span>
@@ -261,7 +253,6 @@ const Form = () => {
                   value={text.form.weekly}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  onClick={() => setIsPerDrop()}
                 />
                 <label htmlFor="option-one">{text.form.weekly}</label>
                 <input
@@ -270,7 +261,6 @@ const Form = () => {
                   name="perValue"
                   value={text.form.monthly}
                   onChange={formik.handleChange}
-                  onClick={() => setIsPerDrop()}
                 />
                 <label htmlFor="option-two">{text.form.monthly}</label>
                 <input
@@ -279,7 +269,6 @@ const Form = () => {
                   name="perValue"
                   value={text.form.annual}
                   onChange={formik.handleChange}
-                  onClick={() => setIsPerDrop()}
                 />
                 <label htmlFor="option-three">{text.form.annual}</label>
               </div>
@@ -327,7 +316,11 @@ const Form = () => {
           <div className={styles.rangeInputs}>
             <h2>{text.form.taxRates}</h2>
             <label htmlFor="lastName">
-              {text.form.bitt} ( {formik.values.bsmv}% )
+              {text.form.bitt} ({" "}
+              {!(userLanguage === "tr")
+                ? formik.values.bsmv + "%"
+                : "%" + formik.values.bsmv}{" "}
+              )
             </label>
             <input
               name="bsmv"
@@ -341,7 +334,11 @@ const Form = () => {
             />
 
             <label htmlFor="kkdf">
-              {text.form.rusf} ( {formik.values.kkdf}% )
+              {text.form.rusf} ({" "}
+              {!(userLanguage === "tr")
+                ? formik.values.kkdf + "%"
+                : "%" + formik.values.kkdf}{" "}
+              )
             </label>
             <input
               name="kkdf"
