@@ -7,7 +7,7 @@ App can be used to calculate loans with different compounding frequencies, payme
 
 Built with React.js(Context API and hooks). It was prepared for the react practicum realized by Fimple and Patika.
 
-<sub>App was designed according to bank user instead of customer, which is why the term "profit rate" choosen for "interest rate".</sub>
+    Note: <sub>App was designed according to bank user instead of customer, which is why the term "profit rate" choosen for "interest rate".</sub>
 
 ## Images
 
