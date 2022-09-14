@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville&display=swap');
 
 .resultContainer {
   width: 90rem;
@@ -16,8 +16,7 @@
   padding: 3rem 2rem;
   user-select: none;
   z-index: 1;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
-    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 .resultContainer > div {
   width: 20rem;
@@ -33,7 +32,7 @@
 .resultContainer > div > p:nth-child(1) {
   font-size: 1.8rem;
   letter-spacing: 0.1rem;
-  font-family: "GFS Didot", serif;
+  font-family: 'GFS Didot', serif;
 }
 .resultContainer > div > p:nth-child(3) {
   margin-top: 0.4rem;
@@ -42,12 +41,7 @@
 }
 .resultContainer > div > button {
   background-color: initial;
-  background-image: linear-gradient(
-    45deg,
-    #c42303 0%,
-    #c97603 51%,
-    #c42303 100%
-  );
+  background-image: linear-gradient(45deg, #c42303 0%, #c97603 51%, #c42303 100%);
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0.2rem 0.4rem;
   color: #ffffff;
@@ -84,5 +78,9 @@
 @media screen and (max-width: 600px) {
   .resultContainer {
     width: 100%;
+  }
+  .resultContainer > div {
+    width: 45%;
+    margin-bottom: 2rem;
   }
 }
