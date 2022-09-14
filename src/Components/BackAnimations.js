@@ -1,15 +1,15 @@
-import styles from "./BackAnimations.module.css";
+import styles from './BackAnimations.module.css';
 
-import bull from "../assets/bull.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import bull from '../assets/bull.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
   faCoins,
   faTurkishLiraSign,
   faSterlingSign,
   faDollarSign,
-  faEuroSign,
-} from "@fortawesome/free-solid-svg-icons";
+  faEuroSign
+} from '@fortawesome/free-solid-svg-icons';
 const BackAnimations = () => {
   return (
     <>

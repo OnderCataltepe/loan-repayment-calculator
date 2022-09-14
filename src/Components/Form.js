@@ -1,21 +1,17 @@
-import styles from "./Form.module.css";
+import styles from './Form.module.css';
 //Hooks
-import { useEffect, useState, useContext } from "react";
-import LangContext from "../contexts/LangContext";
-import CalculatorContext from "../contexts/CalculatorContext";
+import { useEffect, useState, useContext } from 'react';
+import LangContext from '../contexts/LangContext';
+import CalculatorContext from '../contexts/CalculatorContext';
 
 //Fontawesome and Lottie
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTurkishLiraSign,
-  faCaretDown,
-  faCaretUp,
-} from "@fortawesome/free-solid-svg-icons";
-import Lottie from "lottie-react";
-import illust from "../assets/illust1.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTurkishLiraSign, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import Lottie from 'lottie-react';
+import illust from '../assets/illust1.json';
 //Yup and Formik
-import { useFormik } from "formik";
-import * as yup from "yup";
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 const weeks = Array(520)
   .fill(1)
@@ -47,17 +43,17 @@ const Form = () => {
       .number()
       .required(text.form.errors.required)
       .min(0.01, text.form.errors.profitMin)
-      .max(99.99, text.form.errors.profitMax),
+      .max(99.99, text.form.errors.profitMax)
   });
   const formik = useFormik({
     initialValues: {
-      loanAmount: "",
+      loanAmount: '',
       comValue: text.form.monthly,
-      pRate: "",
+      pRate: '',
       bsmv: 15,
       kkdf: 10,
       perValue: text.form.monthly,
-      termValue: 12,
+      termValue: 12
     },
 
     onSubmit: (values) => {
@@ -68,17 +64,15 @@ const Form = () => {
         rusf: values.kkdf,
         rate: values.pRate,
         period: values.perValue,
-        payNumber: values.termValue,
+        payNumber: values.termValue
       };
       calculator(val);
       setIsResult(true);
     },
-    validationSchema: schema,
+    validationSchema: schema
   });
-  const loanError =
-    formik.errors.loanAmount && formik.touched.loanAmount ? "error" : null;
-  const pRateError =
-    formik.errors.pRate && formik.touched.pRate ? "error" : null;
+  const loanError = formik.errors.loanAmount && formik.touched.loanAmount ? 'error' : null;
+  const pRateError = formik.errors.pRate && formik.touched.pRate ? 'error' : null;
 
   //Validations when user typing
   const amountValidation = (e) => {
@@ -132,12 +126,12 @@ const Form = () => {
     if (formik.values.perValue === text.form.annual) {
       setTerms(years);
     }
-    formik.setFieldValue("termValue", 12);
+    formik.setFieldValue('termValue', 12);
   }, [formik.values.perValue]);
 
   useEffect(() => {
-    formik.setFieldValue("comValue", text.form.monthly);
-    formik.setFieldValue("perValue", text.form.monthly);
+    formik.setFieldValue('comValue', text.form.monthly);
+    formik.setFieldValue('perValue', text.form.monthly);
   }, [userLanguage]);
 
   return (
@@ -162,7 +156,7 @@ const Form = () => {
             </span>
             {formik.errors.loanAmount && formik.touched.loanAmount && (
               <p className={styles[loanError]}>{formik.errors.loanAmount}</p>
-            )}{" "}
+            )}{' '}
           </div>
           <div className={styles.animInputs}>
             <input
@@ -177,7 +171,7 @@ const Form = () => {
             />
             <label htmlFor="compounding">{text.form.profitFreq}</label>
             <span>
-              <FontAwesomeIcon icon={isComDrop ? faCaretUp : faCaretDown} />{" "}
+              <FontAwesomeIcon icon={isComDrop ? faCaretUp : faCaretDown} />{' '}
             </span>
 
             {isComDrop && (
@@ -226,7 +220,7 @@ const Form = () => {
             <span>%</span>
             {formik.errors.pRate && formik.touched.pRate && (
               <p className={styles[pRateError]}>{formik.errors.pRate}</p>
-            )}{" "}
+            )}{' '}
           </div>
           <div className={styles.animInputs}>
             <input
@@ -241,7 +235,7 @@ const Form = () => {
             />
             <label htmlFor="per">{text.form.payFreq}</label>
             <span>
-              <FontAwesomeIcon icon={isPerDrop ? faCaretUp : faCaretDown} />{" "}
+              <FontAwesomeIcon icon={isPerDrop ? faCaretUp : faCaretDown} />{' '}
             </span>
 
             {isPerDrop && (
@@ -287,7 +281,7 @@ const Form = () => {
             />
             <label htmlFor="term">{text.form.payNum}</label>
             <span>
-              <FontAwesomeIcon icon={isTermDrop ? faCaretUp : faCaretDown} />{" "}
+              <FontAwesomeIcon icon={isTermDrop ? faCaretUp : faCaretDown} />{' '}
             </span>
 
             {isTermDrop && formik.values.termValue && (
@@ -316,11 +310,8 @@ const Form = () => {
           <div className={styles.rangeInputs}>
             <h2>{text.form.taxRates}</h2>
             <label htmlFor="lastName">
-              {text.form.bitt} ({" "}
-              {!(userLanguage === "tr")
-                ? formik.values.bsmv + "%"
-                : "%" + formik.values.bsmv}{" "}
-              )
+              {text.form.bitt} ({' '}
+              {!(userLanguage === 'tr') ? formik.values.bsmv + '%' : '%' + formik.values.bsmv} )
             </label>
             <input
               name="bsmv"
@@ -334,11 +325,8 @@ const Form = () => {
             />
 
             <label htmlFor="kkdf">
-              {text.form.rusf} ({" "}
-              {!(userLanguage === "tr")
-                ? formik.values.kkdf + "%"
-                : "%" + formik.values.kkdf}{" "}
-              )
+              {text.form.rusf} ({' '}
+              {!(userLanguage === 'tr') ? formik.values.kkdf + '%' : '%' + formik.values.kkdf} )
             </label>
             <input
               name="kkdf"
@@ -352,11 +340,7 @@ const Form = () => {
             />
           </div>
           <div className={styles.buttonDiv}>
-            <Lottie
-              animationData={illust}
-              loop={true}
-              style={{ width: "20rem" }}
-            />
+            <Lottie animationData={illust} loop={true} style={{ width: '20rem' }} />
             <button type="submit">{text.form.calculate}</button>
           </div>
         </div>

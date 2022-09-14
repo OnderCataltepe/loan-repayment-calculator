@@ -1,20 +1,20 @@
-import styles from "./Table.module.css";
-import { forwardRef, useImperativeHandle, useState, useContext } from "react";
-import ReactDOM from "react-dom";
-import LangContext from "../contexts/LangContext";
-import CalculatorContext from "../contexts/CalculatorContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import styles from './Table.module.css';
+import { forwardRef, useImperativeHandle, useState, useContext } from 'react';
+import ReactDOM from 'react-dom';
+import LangContext from '../contexts/LangContext';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 const Table = forwardRef((props, ref) => {
   const { text } = useContext(LangContext);
-  const { payPlan } = useContext(CalculatorContext);
+
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
   const portalToggle = () => {
     setIsPortalOpen((prev) => !prev);
   };
   useImperativeHandle(ref, () => ({
-    portalToggle,
+    portalToggle
   }));
   if (!isPortalOpen) {
     return null;
@@ -42,7 +42,7 @@ const Table = forwardRef((props, ref) => {
               </tr>
             </thead>
             <tbody>
-              {payPlan.map((item, index) => {
+              {props.payPlan.map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>{item.number}</td>
@@ -64,4 +64,5 @@ const Table = forwardRef((props, ref) => {
   );
 });
 
+Table.displayName = 'Table';
 export default Table;

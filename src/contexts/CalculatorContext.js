@@ -1,5 +1,4 @@
-import { createContext, useState } from "react";
-
+import { createContext, useState } from 'react';
 const CalculatorContext = createContext();
 
 export const CalculatorProvider = ({ children }) => {
@@ -8,36 +7,36 @@ export const CalculatorProvider = ({ children }) => {
   const [result, setResult] = useState({
     totalRefund: 0,
     installment: 0,
-    totalTax: 0,
+    totalTax: 0
   });
 
   const convertTimes = (val) => {
     let type =
       val.compound
-        .replace(/Aylık|Monthly/gi, "m")
-        .replace(/Haftalık|Weekly/gi, "w")
-        .replace(/Yıllık|Annual/gi, "y") +
+        .replace(/Aylık|Monthly/gi, 'm')
+        .replace(/Haftalık|Weekly/gi, 'w')
+        .replace(/Yıllık|Annual/gi, 'y') +
       val.period
-        .replace(/Aylık|Monthly/gi, "m")
-        .replace(/Haftalık|Weekly/gi, "w")
-        .replace(/Yıllık|Annual/gi, "y");
+        .replace(/Aylık|Monthly/gi, 'm')
+        .replace(/Haftalık|Weekly/gi, 'w')
+        .replace(/Yıllık|Annual/gi, 'y');
 
     switch (type) {
-      case "mm":
-      case "ww":
-      case "yy":
+      case 'mm':
+      case 'ww':
+      case 'yy':
         return 1;
-      case "wm":
+      case 'wm':
         return 4;
-      case "wy":
+      case 'wy':
         return 52;
-      case "mw":
+      case 'mw':
         return 1 / 4;
-      case "my":
+      case 'my':
         return 12;
-      case "yw":
+      case 'yw':
         return 1 / 52;
-      case "ym":
+      case 'ym':
         return 1 / 12;
       default:
         return null;
@@ -67,8 +66,7 @@ export const CalculatorProvider = ({ children }) => {
       b = p * (data.bitt / 100);
       k = p * (data.rusf / 100);
       installment =
-        (data.amount * (p + b + k) * Math.pow(1 + p + b + k, n)) /
-        (Math.pow(1 + p + b + k, n) - 1);
+        (data.amount * (p + b + k) * Math.pow(1 + p + b + k, n)) / (Math.pow(1 + p + b + k, n) - 1);
     }
 
     for (let i = 0; i < n; i++) {
@@ -78,28 +76,28 @@ export const CalculatorProvider = ({ children }) => {
         number: i + 1,
         installment: installment.toLocaleString(undefined, {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          maximumFractionDigits: 2
         }),
         principal: principal.toLocaleString(undefined, {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          maximumFractionDigits: 2
         }),
         profit: (a * p).toLocaleString(undefined, {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          maximumFractionDigits: 2
         }),
         bitt: (a * b).toLocaleString(undefined, {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          maximumFractionDigits: 2
         }),
         rusf: (a * k).toLocaleString(undefined, {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          maximumFractionDigits: 2
         }),
         remainingPrinciple: (a - principal).toLocaleString(undefined, {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }),
+          maximumFractionDigits: 2
+        })
       };
       tableArr.push(row);
       totalTax += a * b + a * k;
@@ -108,26 +106,23 @@ export const CalculatorProvider = ({ children }) => {
     setResult({
       totalRefund: (installment * n).toLocaleString(undefined, {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        maximumFractionDigits: 2
       }),
       installment: installment.toLocaleString(undefined, {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        maximumFractionDigits: 2
       }),
       totalTax: totalTax.toLocaleString(undefined, {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }),
+        maximumFractionDigits: 2
+      })
     });
     setPayPlan(tableArr);
   };
 
   let values = { result, payPlan, calculator, isResult, setIsResult };
-  return (
-    <CalculatorContext.Provider value={values}>
-      {children}
-    </CalculatorContext.Provider>
-  );
+
+  return <CalculatorContext.Provider value={values}>{children}</CalculatorContext.Provider>;
 };
 
 export default CalculatorContext;

@@ -1,10 +1,10 @@
-import { useContext, useRef } from "react";
-import CalculatorContext from "../contexts/CalculatorContext";
-import LangContext from "../contexts/LangContext";
-import styles from "./Result.module.css";
-import Table from "./Table";
+import { useContext, useRef } from 'react';
+import CalculatorContext from '../contexts/CalculatorContext';
+import LangContext from '../contexts/LangContext';
+import styles from './Result.module.css';
+import Table from './Table';
 const Result = () => {
-  const { result, isResult } = useContext(CalculatorContext);
+  const { result, isResult, payPlan } = useContext(CalculatorContext);
   const { text } = useContext(LangContext);
   const modalRef = useRef();
 
@@ -33,7 +33,7 @@ const Result = () => {
           {text.result.paymentSchedule}
         </button>
       </div>
-      <Table ref={modalRef} />
+      <Table ref={modalRef} payPlan={payPlan} />
     </div>
   );
 };
