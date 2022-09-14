@@ -7,13 +7,13 @@ App can be used to calculate loans with different compounding frequencies, payme
 
 Built with React.js(Context API and hooks). It was prepared for the react practicum realized by Fimple and Patika.
 
-    Note: <sub>App was designed according to bank user instead of customer, which is why the term "profit rate" choosen for "interest rate".</sub>
+<sub> Note:App was designed according to bank user instead of customer, which is why the term "profit rate" choosen for "interest rate".</sub>
 
 ## Images
 
 ![app picture](https://github.com/OnderCataltepe/kredi-hesaplama-fimple/blob/main/home.jpg)
 ![app picture](https://github.com/OnderCataltepe/kredi-hesaplama-fimple/blob/main/result-tr.jpg)
-![app picture](https://github.com/OnderCataltepe/kredi-hesaplama-fimplep/blob/main/table.jpg)
+![app picture](https://github.com/OnderCataltepe/kredi-hesaplama-fimple/blob/main/table.jpg)
 
 ## Features
 
