@@ -1,0 +1,9 @@
+.bull {
+  position: absolute;
+  top: 18rem;
+  left: -18rem;
+}
+.bull img {
+  width: 55rem;
+  height: auto;
+}

@@ -39,33 +39,7 @@
   font-weight: bold;
   font-size: 2rem;
 }
-.resultContainer > div > button {
-  background-color: initial;
-  background-image: linear-gradient(45deg, #c42303 0%, #c97603 51%, #c42303 100%);
-  border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 0.2rem 0.4rem;
-  color: #ffffff;
-  cursor: pointer;
-  transition: 0.5s;
-  background-size: 200% auto;
-  overflow: hidden;
-  padding: 1rem;
-  pointer-events: auto;
-  font-size: 1.6rem;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  border: 0;
-  width: 90%;
-}
-.resultContainer > div > button:hover {
-  background-position: right center;
-  color: #fff;
-  box-shadow: rgba(253, 8, 0, 0.6) 0 0.3rem 0.8rem;
-}
-.resultContainer > div > button:active {
-  transform: scale(0.95);
-}
+
 @media screen and (max-width: 900px) and (min-width: 601px) {
   .resultContainer {
     width: 50rem;

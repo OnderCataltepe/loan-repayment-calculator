@@ -1,24 +1,26 @@
 import styles from './Table.module.css';
 import { forwardRef, useImperativeHandle, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import LangContext from '../contexts/LangContext';
-
+import LangContext from 'contexts/LangContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+
 const Table = forwardRef((props, ref) => {
   const { text } = useContext(LangContext);
-
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
   const portalToggle = () => {
     setIsPortalOpen((prev) => !prev);
   };
+
   useImperativeHandle(ref, () => ({
     portalToggle
   }));
+
   if (!isPortalOpen) {
     return null;
   }
+
   return ReactDOM.createPortal(
     <div className={styles.bgContainer}>
       <div className={styles.cardContainer}>
@@ -42,19 +44,17 @@ const Table = forwardRef((props, ref) => {
               </tr>
             </thead>
             <tbody>
-              {props.payPlan.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.number}</td>
-                    <td>{item.installment} TL</td>
-                    <td>{item.principal} TL</td>
-                    <td>{item.remainingPrinciple} TL</td>
-                    <td>{item.profit} TL</td>
-                    <td>{item.rusf} TL</td>
-                    <td>{item.bitt} TL</td>
-                  </tr>
-                );
-              })}
+              {props.payPlan.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.number}</td>
+                  <td>{item.installment} TL</td>
+                  <td>{item.principal} TL</td>
+                  <td>{item.remainingPrinciple} TL</td>
+                  <td>{item.profit} TL</td>
+                  <td>{item.rusf} TL</td>
+                  <td>{item.bitt} TL</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -65,4 +65,5 @@ const Table = forwardRef((props, ref) => {
 });
 
 Table.displayName = 'Table';
+
 export default Table;

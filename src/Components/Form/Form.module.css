@@ -1,5 +1,5 @@
 /*FONTS*/
-@import url("https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville&display=swap');
 
 /*FORM*/
 .formContainer {
@@ -15,17 +15,16 @@
   position: relative;
   user-select: none;
   z-index: 1;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
-    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 .formContainer h1 {
   font-size: 3rem;
   color: #1a1b1e;
   margin: 0 auto;
-  font-family: "Libre Baskerville", serif;
+  font-family: 'Libre Baskerville', serif;
   text-transform: uppercase;
   margin-bottom: 3rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.3rem;
 }
 .formContainer form {
   display: flex;
@@ -42,7 +41,7 @@
   flex-wrap: wrap;
   min-height: 9rem;
   border-radius: 2rem;
-  font-family: "GFS Didot", serif;
+  font-family: 'GFS Didot', serif;
 }
 .animInputs {
   display: flex;
@@ -64,8 +63,7 @@
   text-align: center;
   z-index: 1;
   background-color: transparent;
-  box-shadow: rgba(50, 50, 93, 0.1) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.15) 0px 3px 7px -3px;
+  box-shadow: rgba(50, 50, 93, 0.1) 0px 6px 12px -2px, rgba(0, 0, 0, 0.15) 0px 3px 7px -3px;
 }
 .animInputs > input:focus {
   border: 0.3rem solid rgb(177, 172, 243);
@@ -75,7 +73,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.animInputs > input[type="number"] {
+.animInputs > input[type='number'] {
   -moz-appearance: textfield;
 }
 .animInputs > label {
@@ -119,7 +117,7 @@ input::-webkit-inner-spin-button {
   top: 4.6rem;
   z-index: 5;
 }
-.dropdown input[type="radio"] {
+.dropdown input[type='radio'] {
   position: absolute;
   visibility: hidden;
   display: none;
@@ -159,7 +157,7 @@ input::-webkit-inner-spin-button {
   background-color: transparent;
 }
 
-/* RANGE INPUTS AND BUTTON*/
+/* RANGE INPUTS*/
 
 .secondContainer {
   display: flex;
@@ -177,7 +175,7 @@ input::-webkit-inner-spin-button {
 .rangeInputs h2 {
   font-size: 2rem;
   font-weight: bold;
-  font-family: "Libre Baskerville", serif;
+  font-family: 'Libre Baskerville', serif;
   letter-spacing: 0.1rem;
   margin-bottom: 2rem;
   color: #4e4e4e;
@@ -192,40 +190,6 @@ input::-webkit-inner-spin-button {
   width: 100%;
   margin-bottom: 2rem;
 }
-.buttonDiv button {
-  background-color: initial;
-  background-image: linear-gradient(
-    45deg,
-    #ff512f 0%,
-    #f09819 51%,
-    #ff512f 100%
-  );
-  border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 0.2rem 0.4rem;
-  color: #ffffff;
-  cursor: pointer;
-  transition: 0.5s;
-  background-size: 200% auto;
-  overflow: hidden;
-  padding: 1rem;
-  pointer-events: auto;
-  font-size: 1.6rem;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  border: 0;
-  width: 15rem;
-}
-.buttonDiv button:hover {
-  background-position: right center;
-
-  color: #fff;
-  text-decoration: none;
-  box-shadow: rgba(253, 76, 0, 0.6) 0 0.3rem 0.8rem;
-}
-.buttonDiv button:active {
-  transform: scale(0.95);
-}
 
 /*ERROR CLASS*/
 
@@ -237,166 +201,6 @@ p.error {
 }
 .error {
   border-color: red !important;
-}
-
-/*ANIMATIONS*/
-.bgBottom {
-  width: 50rem;
-  height: 10rem;
-  position: absolute;
-  bottom: 0;
-}
-.logoHolder {
-  background: transparent;
-  width: 80rem;
-  height: 20rem;
-  position: absolute;
-  margin: 0 auto;
-  padding-top: 12px;
-  padding-bottom: 24px;
-  -webkit-transform: translateZ(0);
-  bottom: 26rem;
-  right: 30rem;
-  z-index: -1;
-  transform: rotate(-90deg);
-}
-.bar {
-  position: relative;
-  height: 5rem;
-  background: transparent;
-  width: 0%;
-  top: 0px;
-  left: 18px;
-  margin-top: 3rem;
-  box-shadow: 0 0 3px rgba(192, 192, 192, 0.9);
-  animation: fill 5s infinite alternate, colors 5s infinite alternate;
-}
-.bar.fill1 {
-  animation: fill-1 5s infinite alternate, colors 5s infinite alternate;
-}
-.bar.fill2 {
-  animation: fill-2 5s infinite alternate, colors 5s infinite alternate;
-}
-.bar.fill3 {
-  animation: fill-3 5s infinite alternate, colors 5s infinite alternate;
-}
-.bar.fill4 {
-  animation: fill-4 5s infinite alternate, colors 5s infinite alternate;
-}
-.bar.fill5 {
-  animation: fill-5 5s infinite alternate, colors 5s infinite alternate;
-}
-.bar.fill6 {
-  animation: fill-6 5s infinite alternate, colors 5s infinite alternate;
-}
-@keyframes fill {
-  0% {
-    width: 0;
-  }
-  33% {
-    width: 30px;
-  }
-  66% {
-    width: 10px;
-  }
-  100% {
-    width: 105px;
-  }
-}
-@keyframes fill-1 {
-  0% {
-    width: 0;
-  }
-  33% {
-    width: 50px;
-  }
-  66% {
-    width: 20px;
-  }
-  100% {
-    width: 130px;
-  }
-}
-@keyframes fill-2 {
-  0% {
-    width: 0;
-  }
-  33% {
-    width: 90px;
-  }
-  66% {
-    width: 70px;
-  }
-  100% {
-    width: 136px;
-  }
-}
-@keyframes fill-3 {
-  0% {
-    width: 0;
-  }
-  33% {
-    width: 50px;
-  }
-  66% {
-    width: 24px;
-  }
-  100% {
-    width: 109px;
-  }
-}
-@keyframes fill-4 {
-  0% {
-    width: 0;
-  }
-  33% {
-    width: 98px;
-  }
-  66% {
-    width: 34px;
-  }
-  100% {
-    width: 99px;
-  }
-}
-@keyframes fill-5 {
-  0% {
-    width: 0;
-  }
-  33% {
-    width: 30px;
-  }
-  66% {
-    width: 10px;
-  }
-  100% {
-    width: 148px;
-  }
-}
-@keyframes fill-6 {
-  0% {
-    width: 0;
-  }
-  33% {
-    width: 7.2rem;
-  }
-  66% {
-    width: 3.3rem;
-  }
-  100% {
-    width: 21rem;
-  }
-}
-@keyframes colors {
-  0% {
-    background-color: rgba(250, 250, 250, 0.8);
-  }
-  50% {
-    background-color: rgba(226, 224, 224, 0.3);
-  }
-  100% {
-    background-color: rgba(226, 224, 224, 0.2);
-  }
 }
 
 /*RESPONSIVE*/
@@ -426,9 +230,6 @@ p.error {
     align-items: center;
     justify-content: space-evenly;
   }
-  .logoHolder {
-    display: none;
-  }
 }
 @media screen and (max-width: 900px) and (min-width: 601px) {
   .formContainer {
@@ -455,8 +256,5 @@ p.error {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-  }
-  .logoHolder {
-    display: none;
   }
 }

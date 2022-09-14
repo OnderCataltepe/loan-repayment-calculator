@@ -1,8 +1,7 @@
 import styles from './Navbar.module.css';
-import trFlag from '../assets/turkey.png';
-import enFlag from '../assets/britain.png';
+import { Britain, Turkey } from 'assets';
 import { useContext } from 'react';
-import LangContext from '../contexts/LangContext';
+import LangContext from '../../contexts/LangContext';
 const Navbar = () => {
   const { userLanguage, changeLanguage } = useContext(LangContext);
 
@@ -10,7 +9,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.languages}>
         <button onClick={() => changeLanguage(userLanguage === 'tr' ? 'eng' : 'tr')}>
-          <img alt="Flag" src={userLanguage === 'tr' ? enFlag : trFlag} />
+          <img alt="Flag" src={userLanguage === 'tr' ? Britain : Turkey} />
           <p>{userLanguage === 'tr' ? 'English' : 'Türkçe'}</p>
         </button>
       </div>
