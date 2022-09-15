@@ -126,6 +126,8 @@ const Form = () => {
 
   useEffect(() => {
     formik.resetForm();
+    formik.setFieldValue('comValue', text.form.monthly);
+    formik.setFieldValue('perValue', text.form.monthly);
   }, [userLanguage]);
 
   return (
