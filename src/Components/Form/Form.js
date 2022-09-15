@@ -1,7 +1,6 @@
 import styles from './Form.module.css';
-//Components
 import { Button, Graph, RangeInput, NumberInput, SelectInput } from 'Components';
-//Hooks
+//Hooks, Context and helpers
 import { useEffect, useState, useContext } from 'react';
 import LangContext from 'contexts/LangContext';
 import CalculatorContext from 'contexts/CalculatorContext';
@@ -126,8 +125,7 @@ const Form = () => {
   }, [formik.values.perValue]);
 
   useEffect(() => {
-    formik.setFieldValue('comValue', text.form.monthly);
-    formik.setFieldValue('perValue', text.form.monthly);
+    formik.resetForm();
   }, [userLanguage]);
 
   return (

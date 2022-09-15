@@ -24,6 +24,7 @@ const NumberInput = ({
         onBlur={onBlur}
         value={value}
         className={className}
+        required
       />
       <label htmlFor={name}>{labelText}</label>
       <span>
