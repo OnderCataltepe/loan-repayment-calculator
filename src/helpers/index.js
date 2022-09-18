@@ -1,3 +1,7 @@
+/**This function specifies how much the profit will be multiplied according to the profit frequency and the payment period. 
+ for example, if the user has chosen to pay annually for monthly profit, the profit will be processed a total of 12 times each month until it's time to pay.
+ */
+
 const convertTimes = (val) => {
   let type =
     val.compound
@@ -31,7 +35,7 @@ const convertTimes = (val) => {
   }
 };
 
-// p is stands for profit rate. Similarly, b --> bitt, k--> rusf
+/** p stands for profit rate. Similarly, b --> bitt, k--> rusf, a --> credit amount and n--> payment number */
 
 export const calculator = (data) => {
   let a = data.amount;

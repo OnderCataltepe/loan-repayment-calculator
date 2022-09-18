@@ -21,7 +21,6 @@ import * as yup from 'yup';
 const Form = () => {
   const { text, userLanguage } = useContext(LangContext);
   const { setIsResult, setCalculatedDatas } = useContext(CalculatorContext);
-  //States
   const [isPerDrop, setIsPerDrop] = useState(false);
   const [isTermDrop, setIsTermDrop] = useState(false);
   const [isComDrop, setIsComDrop] = useState(false);
@@ -69,7 +68,8 @@ const Form = () => {
   const loanError = formik.errors.loanAmount && formik.touched.loanAmount ? 'error' : null;
   const pRateError = formik.errors.pRate && formik.touched.pRate ? 'error' : null;
 
-  //Validations when user typing
+  //functions to prevent the user from entering incorrect data at the time of typing for amount and profit rate input
+
   const amountValidation = (e) => {
     const re = /^[0-9]*$/;
     if (!re.test(e.key) || e.target.value.length > 8) {
@@ -110,6 +110,7 @@ const Form = () => {
       }, 100);
     }
   };
+  //Needed it because the payment period determines the number of installments.
 
   useEffect(() => {
     if (formik.values.perValue === text.form.monthly) {

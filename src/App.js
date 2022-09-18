@@ -1,7 +1,5 @@
 import './App.css';
-
 import { BackImages, Form, Navbar, Result } from 'Components';
-
 import { useContext } from 'react';
 import CalculatorContext from 'contexts/CalculatorContext';
 
